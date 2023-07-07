@@ -5,6 +5,7 @@ import (
 	"gorm.io/gorm"
 )
 
+//go:generate mockery --name AccountRepository --filename repository_mock.go
 type AccountRepository interface {
 	CreateAccount(account models.Account) (models.Account, error)
 	GetByEmail(email string) (account models.Account, err error)

@@ -6,7 +6,7 @@ import (
 	"github.com/vasapolrittideah/smokefree/apps/api/internal/config"
 )
 
-func RegisterHandlers(r fiber.Router, conf *config.Config, service usecase.AuthUsecase) {
+func RegisterHandlers(r fiber.Router, conf *config.Config, service usecase.AuthUseCase) {
 	authHandler := NewAuthHandler(service, conf)
 	router := r.Group("/auth")
 

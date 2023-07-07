@@ -4,18 +4,19 @@ import (
 	"errors"
 	"github.com/jackc/pgx/v5/pgconn"
 	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/repository"
-	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/request"
+	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/requests"
 	"github.com/vasapolrittideah/smokefree/apps/api/internal/config"
 	"github.com/vasapolrittideah/smokefree/apps/api/internal/utils"
 	"github.com/vasapolrittideah/smokefree/apps/api/models"
 )
 
-type AuthUsecase interface {
-	SignUp(payload request.SignUpRequest) (*models.Account, error)
-	SignIn(payload request.SignInRequest) (*Token, error)
+//go:generate mockery --name AuthUsecase --filename usecase_mock.go
+type AuthUseCase interface {
+	SignUp(payload requests.SignUpRequestBody) (*models.Account, error)
+	SignIn(payload requests.SignInRequestBody) (*Token, error)
 }
 
-type authUsecase struct {
+type authUseCase struct {
 	accountRepo repository.AccountRepository
 	conf        *config.Config
 }
@@ -24,11 +25,11 @@ type Token struct {
 	AccessToken string `json:"access_token"`
 }
 
-func NewAuthUsecase(repo repository.AccountRepository, conf *config.Config) AuthUsecase {
-	return authUsecase{repo, conf}
+func NewAuthUsecase(repo repository.AccountRepository, conf *config.Config) AuthUseCase {
+	return authUseCase{repo, conf}
 }
 
-func (u authUsecase) SignUp(payload request.SignUpRequest) (*models.Account, error) {
+func (u authUseCase) SignUp(payload requests.SignUpRequestBody) (*models.Account, error) {
 	if payload.Password != payload.PasswordConfirm {
 		return nil, errors.New("passwords are not match")
 	}
@@ -56,7 +57,7 @@ func (u authUsecase) SignUp(payload request.SignUpRequest) (*models.Account, err
 	return &account, nil
 }
 
-func (u authUsecase) SignIn(payload request.SignInRequest) (*Token, error) {
+func (u authUseCase) SignIn(payload requests.SignInRequestBody) (*Token, error) {
 	account, err := u.accountRepo.GetByEmail(payload.Email)
 	if err != nil {
 		return nil, errors.New("email does not exist")

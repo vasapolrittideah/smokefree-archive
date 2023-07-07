@@ -53,7 +53,7 @@ type InvalidField struct {
 func ErrInvalidInput(errs []InvalidField) ErrorResponse {
 	return ErrorResponse{
 		Status:  fiber.StatusBadRequest,
-		Message: "the request body is failed validation",
+		Message: "the requests body is failed validation",
 		Details: errs,
 	}
 }

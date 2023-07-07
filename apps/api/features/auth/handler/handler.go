@@ -2,25 +2,25 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/request"
+	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/requests"
 	"github.com/vasapolrittideah/smokefree/apps/api/features/auth/usecase"
 	"github.com/vasapolrittideah/smokefree/apps/api/internal/config"
 	"github.com/vasapolrittideah/smokefree/apps/api/internal/errors"
 )
 
 type AuthHandler struct {
-	usecase usecase.AuthUsecase
+	usecase usecase.AuthUseCase
 	conf    *config.Config
 }
 
-func NewAuthHandler(usecase usecase.AuthUsecase, conf *config.Config) AuthHandler {
+func NewAuthHandler(usecase usecase.AuthUseCase, conf *config.Config) AuthHandler {
 	return AuthHandler{usecase, conf}
 }
 
 func (h AuthHandler) SignUp(c *fiber.Ctx) error {
-	payload := new(request.SignUpRequest)
+	payload := new(requests.SignUpRequestBody)
 	if err := c.BodyParser(payload); err != nil {
-		_err := errors.ErrBadRequest("The request is in a invalid format")
+		_err := errors.ErrBadRequest("The requests is in a invalid format")
 		return c.Status(_err.StatusCode()).JSON(_err)
 	}
 
@@ -39,9 +39,9 @@ func (h AuthHandler) SignUp(c *fiber.Ctx) error {
 }
 
 func (h AuthHandler) SignIn(c *fiber.Ctx) error {
-	payload := new(request.SignInRequest)
+	payload := new(requests.SignInRequestBody)
 	if err := c.BodyParser(payload); err != nil {
-		_err := errors.ErrBadRequest("The request is in a invalid format")
+		_err := errors.ErrBadRequest("The requests is in a invalid format")
 		return c.Status(_err.StatusCode()).JSON(_err)
 	}
 
