@@ -29,7 +29,7 @@ func TestMain(m *testing.M) {
 
 func TestAuthHandler_SignUp(t *testing.T) {
 	app := fiber.New()
-	mockUseCase := usecase.NewMockAuthUsecase(t)
+	mockUseCase := usecase.NewMockAuthUseCase(t)
 
 	conf, err := config.New()
 	if err != nil {
@@ -98,7 +98,7 @@ func TestAuthHandler_SignUp(t *testing.T) {
 
 func TestAuthHandler_SignIn(t *testing.T) {
 	app := fiber.New()
-	mockUseCase := usecase.NewMockAuthUsecase(t)
+	mockUseCase := usecase.NewMockAuthUseCase(t)
 
 	conf, err := config.New()
 	if err != nil {
@@ -119,7 +119,7 @@ func TestAuthHandler_SignIn(t *testing.T) {
 
 	testCases := []test.HandlerTestCase{
 		{
-			Name:         "should return expected data",
+			Name:         "Success",
 			Method:       "POST",
 			URL:          "/auth/signin",
 			WantStatus:   fiber.StatusOK,
@@ -130,7 +130,7 @@ func TestAuthHandler_SignIn(t *testing.T) {
 			},
 		},
 		{
-			Name:         "should return bad request when the body is invalid",
+			Name:         "InvalidRequestBody",
 			Method:       "POST",
 			URL:          "/auth/signin",
 			WantStatus:   fiber.StatusBadRequest,
@@ -141,7 +141,7 @@ func TestAuthHandler_SignIn(t *testing.T) {
 			},
 		},
 		{
-			Name:       "should return bad request when the body is failed validation",
+			Name:       "FailedValidation",
 			Method:     "POST",
 			URL:        "/auth/signin",
 			WantStatus: fiber.StatusBadRequest,

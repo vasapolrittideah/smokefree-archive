@@ -10,7 +10,7 @@ import (
 	"github.com/vasapolrittideah/smokefree/apps/api/models"
 )
 
-//go:generate mockery --name AuthUsecase --filename usecase_mock.go
+//go:generate mockery --name AuthUseCase --filename usecase_mock.go
 type AuthUseCase interface {
 	SignUp(payload requests.SignUpRequestBody) (*models.Account, error)
 	SignIn(payload requests.SignInRequestBody) (*Token, error)

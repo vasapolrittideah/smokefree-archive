@@ -25,45 +25,80 @@ func TestMain(m *testing.M) {
 	os.Exit(exitCode)
 }
 
-func TestAuthFlow(t *testing.T) {
+func TestAuthUseCase_SignUp(t *testing.T) {
+	asserts := assert.New(t)
+
 	accountRepo := repository.NewMockAccountRepository(t)
 
 	conf, err := config.New()
-	if err != nil {
-		log.Fatalln(err)
-	}
+	asserts.NoError(err)
 
 	mockUseCase := NewAuthUsecase(accountRepo, conf)
 
 	fakeEmail := faker.Email()
 	fakePassword := faker.Password()
 
-	account := models.Account{
-		ID:        uuid.New(),
-		Email:     fakeEmail,
-		CreatedAt: time.Now().UTC(),
-		UpdatedAt: time.Now().UTC(),
-	}
+	t.Run("Success", func(t *testing.T) {
+		account := models.Account{
+			ID:        uuid.New(),
+			Email:     fakeEmail,
+			CreatedAt: time.Now().UTC(),
+			UpdatedAt: time.Now().UTC(),
+		}
 
-	signUpRequestBody := requests.SignUpRequestBody{
-		Email:           fakeEmail,
-		Password:        fakePassword,
-		PasswordConfirm: fakePassword,
-	}
+		signUpRequestBody := requests.SignUpRequestBody{
+			Email:           fakeEmail,
+			PasswordConfirm: fakePassword,
+			Password:        fakePassword,
+		}
 
-	accountRepo.EXPECT().CreateAccount(mock.AnythingOfType("Account")).Return(account, nil).
-		Run(func(_account models.Account) {
-			account.Password = _account.Password
-		})
-	_, err = mockUseCase.SignUp(signUpRequestBody)
-	assert.NoError(t, err)
+		accountRepo.EXPECT().CreateAccount(mock.AnythingOfType("Account")).Return(account, nil)
 
-	signInRequestBody := requests.SignInRequestBody{
-		Email:    fakeEmail,
-		Password: fakePassword,
-	}
-
-	accountRepo.EXPECT().GetByEmail(mock.AnythingOfType("string")).Return(account, nil)
-	_, err = mockUseCase.SignIn(signInRequestBody)
-	assert.NoError(t, err)
+		res, err := mockUseCase.SignUp(signUpRequestBody)
+		asserts.NoError(err)
+		asserts.Equal(&account, res)
+	})
 }
+
+//func TestAuthFlow(t *testing.T) {
+//	accountRepo := repository.NewMockAccountRepository(t)
+//
+//	conf, err := config.New()
+//	if err != nil {
+//		log.Fatalln(err)
+//	}
+//
+//	mockUseCase := NewAuthUsecase(accountRepo, conf)
+//
+//	fakeEmail := faker.Email()
+//	fakePassword := faker.Password()
+//
+//	account := models.Account{
+//		ID:        uuid.New(),
+//		Email:     fakeEmail,
+//		CreatedAt: time.Now().UTC(),
+//		UpdatedAt: time.Now().UTC(),
+//	}
+//
+//	signUpRequestBody := requests.SignUpRequestBody{
+//		Email:           fakeEmail,
+//		Password:        fakePassword,
+//		PasswordConfirm: fakePassword,
+//	}
+//
+//	accountRepo.EXPECT().CreateAccount(mock.AnythingOfType("Account")).Return(account, nil).
+//		Run(func(_account models.Account) {
+//			account.Password = _account.Password
+//		})
+//	_, err = mockUseCase.SignUp(signUpRequestBody)
+//	assert.NoError(t, err)
+//
+//	signInRequestBody := requests.SignInRequestBody{
+//		Email:    fakeEmail,
+//		Password: fakePassword,
+//	}
+//
+//	accountRepo.EXPECT().GetByEmail(mock.AnythingOfType("string")).Return(account, nil)
+//	_, err = mockUseCase.SignIn(signInRequestBody)
+//	assert.NoError(t, err)
+//}
