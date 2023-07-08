@@ -10,7 +10,6 @@ import (
 	"github.com/vasapolrittideah/smokefree/apps/api/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
-	"log"
 	"os"
 	"time"
 )
@@ -54,7 +53,7 @@ func New() (config *Config, err error) {
 		fmt.Println("🎉 Connected successfully to the database")
 
 		config.DB = db
-		if err := migrateDatabase(config); err != nil {
+		if err := MigrateDatabase(config); err != nil {
 			return nil, err
 		}
 	}
@@ -63,21 +62,9 @@ func New() (config *Config, err error) {
 }
 
 func LoadEnvironmentVariables() (constants *Constants, err error) {
-	// Add root project directory for config path when testing
-	if os.Getenv("ENVIRONMENT") == "test" {
-		currentDir, err := os.Getwd()
-		if err != nil {
-			log.Fatal(err)
-		}
+	rootDir, _ := utils.FindProjectRoot()
 
-		rootDir, err := utils.FindProjectRoot(currentDir)
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		viper.AddConfigPath(rootDir)
-	}
-
+	viper.AddConfigPath(rootDir)
 	viper.AddConfigPath(".")
 	viper.SetConfigName(".env")
 	viper.SetConfigType("env")
@@ -113,7 +100,7 @@ func connectDatabase(constants *Constants) (*gorm.DB, error) {
 	return gorm.Open(postgres.Open(dsn), &gorm.Config{})
 }
 
-func migrateDatabase(config *Config) error {
+func MigrateDatabase(config *Config) error {
 	config.DB.Exec("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\"")
 	return config.DB.AutoMigrate(
 		&models.Account{},
