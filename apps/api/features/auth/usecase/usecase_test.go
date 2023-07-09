@@ -38,27 +38,43 @@ func TestAuthUseCase_SignUp(t *testing.T) {
 	fakeEmail := faker.Email()
 	fakePassword := faker.Password()
 
-	t.Run("Success", func(t *testing.T) {
-		account := models.Account{
-			ID:        uuid.New(),
-			Email:     fakeEmail,
-			CreatedAt: time.Now().UTC(),
-			UpdatedAt: time.Now().UTC(),
-		}
+	account := models.Account{
+		ID:        uuid.New(),
+		Email:     fakeEmail,
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+	}
 
+	accountRepo.EXPECT().CreateAccount(mock.AnythingOfType("Account")).Return(account, nil)
+
+	t.Run("Success", func(t *testing.T) {
 		signUpRequestBody := requests.SignUpRequestBody{
 			Email:           fakeEmail,
 			PasswordConfirm: fakePassword,
 			Password:        fakePassword,
 		}
 
-		accountRepo.EXPECT().CreateAccount(mock.AnythingOfType("Account")).Return(account, nil)
-
 		res, err := mockUseCase.SignUp(signUpRequestBody)
 		asserts.NoError(err)
 		asserts.Equal(&account, res)
 	})
+
+	t.Run("PasswordsNotMatch", func(t *testing.T) {
+		signUpRequestBody := requests.SignUpRequestBody{
+			Email:           fakeEmail,
+			Password:        fakePassword,
+			PasswordConfirm: "NotMatch",
+		}
+
+		_, err := mockUseCase.SignUp(signUpRequestBody)
+		asserts.Error(err)
+	})
 }
+
+//func TestAuthUseCase_SignIn(t *testing.T) {
+//	asserts := assert.New(t)
+//
+//}
 
 //func TestAuthFlow(t *testing.T) {
 //	accountRepo := repository.NewMockAccountRepository(t)

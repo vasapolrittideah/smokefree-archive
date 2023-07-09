@@ -67,3 +67,6 @@ vendor/
 go.work
 
 base64
+
+# Next.js
+.next

@@ -7,7 +7,13 @@
             "dependsOn": ["^build"]
         },
         "test": {
-            "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
+            "inputs": [
+                "default",
+                "^default",
+                "{workspaceRoot}/jest.preset.js",
+                "{workspaceRoot}/jest.preset.js",
+                "{workspaceRoot}/jest.preset.js"
+            ]
         },
         "lint": {
             "inputs": [
@@ -25,5 +31,5 @@
                 "accessToken": "NTI4NjU0YmQtZGU0Ny00ZDA1LTkxY2ItNmVhOWMyNzA3NzI2fHJlYWQtd3JpdGU="
             }
         }
-    }
+    },
 }

@@ -16,4 +16,5 @@
         }
     ],
     "extends": "../../tsconfig.base.json"
+    ,
 }
