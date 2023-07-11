@@ -1,0 +1,92 @@
+.tag {
+    color: $color-silver;
+    align-self: center;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    padding: 0.2rem 1rem;
+    background-image: radial-gradient(
+        200% 200% at 50% 111%,
+        rgba($color-rice-cake, 0.1) 0%,
+        rgba(120, 120, 120, 0.05) 24%
+    );
+    border: 1px solid rgba($color-rice-cake, 0.2);
+    border-radius: 999rem;
+}
+
+.title {
+    text-align: center;
+    font-size: 6rem;
+    line-height: 110%;
+
+    &__underline {
+        text-decoration: underline;
+        text-underline-offset: 10px;
+        text-decoration-thickness: 7px;
+    }
+}
+
+.description {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1.75rem;
+
+    &__line {
+        background-color: $color-silver;
+        height: 1px;
+        width: 3rem;
+        margin-top: 0.75rem;
+    }
+
+    &__p {
+        color: $color-silver;
+        max-width: 450px;
+    }
+}
+
+.horizontal_line {
+    height: 1px;
+    transform: translateX(-6rem);
+    width: calc(100% + 6rem);
+    background-color: $color-rice-cake;
+    mask-image: linear-gradient(
+        90deg,
+        transparent,
+        #000 20%,
+        #000 80%,
+        transparent 100%
+    );
+}
+
+.vertical_line {
+    position: absolute;
+    transform: translateY(-6rem);
+    width: 1px;
+    height: calc(100% + 6rem);
+    background-color: $color-rice-cake;
+    mask-image: linear-gradient(
+        180deg,
+        transparent,
+        #000 20%,
+        #000 80%,
+        transparent 100%
+    );
+
+    &__right {
+        @extend .vertical_line;
+        right: 0;
+    }
+}
+
+.action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: $color-silver;
+
+    &__p {
+        color: inherit;
+        align-self: center;
+    }
+}

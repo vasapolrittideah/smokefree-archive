@@ -1,0 +1,57 @@
+.button {
+    background-image: radial-gradient(
+        200% 200% at 50% 111%,
+        rgba($color-rice-cake, 0.1) 0%,
+        rgba(120, 120, 120, 0.05) 24%
+    );
+    background-color: $color-shark;
+    border-radius: 0.5rem;
+    border-width: 0;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+
+    &:hover {
+        background-color: rgba($color-shark, 0.9);
+    }
+
+    //&:after {
+    //    content: '';
+    //    z-index: -10;
+    //    position: absolute;
+    //    top: 0;
+    //    bottom: 0;
+    //    left: 0;
+    //    margin: auto 0;
+    //    width: 100%;
+    //    height: calc(100% - 1rem);
+    //    opacity: .8;
+    //    border-radius: 999rem;
+    //    background-clip: padding-box;
+    //    background: $color-cinnabar;
+    //    filter: blur(3rem);
+    //    animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+    //}
+}
+
+.wrapper {
+    position: relative;
+    padding: 1px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
+    background: linear-gradient(
+        to bottom right,
+        rgba($color-rice-cake, 0.3),
+        rgba($color-rice-cake, 0.1)
+    );
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

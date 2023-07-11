@@ -1,0 +1,10 @@
+.spinner {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid rgba($color-rice-cake, .3);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
