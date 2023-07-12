@@ -12,14 +12,14 @@ import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import styles from "./page.module.scss";
 import { faArrowRightLong } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Button from "../components/button";
+import Button from "../../components/button";
 
 export default function Home() {
     const count = useMotionValue(0);
     const rounded = useTransform(count, Math.round);
 
     useEffect(() => {
-        const animation = animate(count, 56, { duration: 3 });
+        const animation = animate(count, 56, { duration: 2.5 });
 
         return animation.stop;
     }, []);
@@ -45,8 +45,8 @@ export default function Home() {
                 animate={{ height: "calc(100% - 6rem)", opacity: "10%" }}
                 transition={{ ease: "easeIn", duration: 0.5, delay: 0.25 }}
             />
-            <h1 className={styles.title}>
-                <span className={styles.title__underline}>บุหรี่</span>
+            <h1 className={styles.header}>
+                <span className={styles.header__underline}>บุหรี่</span>
                 เลิกได้ถ้าคุณลงมือทำ
             </h1>
             <motion.div
@@ -55,9 +55,9 @@ export default function Home() {
                 animate={{ width: "calc(100% + 12rem)", opacity: "10%" }}
                 transition={{ ease: "easeIn", duration: 0.5, delay: 0.1 }}
             />
-            <div className={styles.description}>
-                <div className={styles.description__line} />
-                <p className={styles.description__p}>
+            <div className={styles.middle}>
+                <div className={styles.middle__left} />
+                <p className={styles.middle__right}>
                     โครงการเลิกบุหรี่เป็นแนวทางหรือกลยุทธ์ที่มุ่งเน้นในการช่วยผู้ที่ต้องการเลิกบุหรี่ให้สามารถก้าวไปสู่การเลิกสูบบุหรี่อย่างปลอดภัยและประสบความสำเร็จได้&nbsp;โครงการนี้มักเป็นการผสมผสานของการให้คำปรึกษาและการสนับสนุนทางสังคมเพื่อช่วยเหลือผู้สูบบุหรี่ในการรับมือกับความ
                     <br />
                     เครียดและอุปสรรคต่างๆ&nbsp;ที่อาจเกิดขึ้นระหว่างขั้นตอนการเลิกบุหรี่
@@ -69,12 +69,12 @@ export default function Home() {
                 animate={{ width: "calc(100% + 12rem)", opacity: "10%" }}
                 transition={{ ease: "easeIn", duration: 0.5, delay: 0.2 }}
             />
-            <div className={styles.action}>
+            <div className={styles.footer}>
                 <Button width="10rem" height="3rem" loading={false}>
                     <span>เริ่มต้น</span>
                     <FontAwesomeIcon icon={faArrowRightLong} />
                 </Button>
-                <p className={styles.action__p}>
+                <p className={styles.footer__right}>
                     <motion.span>{rounded}</motion.span> ผู้เข้าร่วมโครงการ
                 </p>
             </div>
@@ -84,6 +84,7 @@ export default function Home() {
                 animate={{ width: "calc(100% + 12rem)", opacity: "10%" }}
                 transition={{ ease: "easeIn", duration: 0.5, delay: 0.3 }}
             />
+            <div className={styles.background} />
         </React.Fragment>
     );
 }

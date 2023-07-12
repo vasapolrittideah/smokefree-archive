@@ -13,28 +13,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-
-    &:hover {
-        background-color: rgba($color-shark, 0.9);
-    }
-
-    //&:after {
-    //    content: '';
-    //    z-index: -10;
-    //    position: absolute;
-    //    top: 0;
-    //    bottom: 0;
-    //    left: 0;
-    //    margin: auto 0;
-    //    width: 100%;
-    //    height: calc(100% - 1rem);
-    //    opacity: .8;
-    //    border-radius: 999rem;
-    //    background-clip: padding-box;
-    //    background: $color-cinnabar;
-    //    filter: blur(3rem);
-    //    animation: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
-    //}
 }
 
 .wrapper {
@@ -42,11 +20,14 @@
     padding: 1px;
     border-radius: 0.5rem;
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
-    background: linear-gradient(
-        to bottom right,
-        rgba($color-rice-cake, 0.3),
-        rgba($color-rice-cake, 0.1)
+    background: conic-gradient(
+        from var(--border-angle),
+        rgba($color-rice-cake, 0.5),
+        rgba($color-rice-cake, 0.1) 50%,
+        rgba($color-rice-cake, 0.1) 50%,
+        rgba($color-rice-cake, 0.5)
     );
+    animation: border-spin 3s linear infinite;
 }
 
 .loading {

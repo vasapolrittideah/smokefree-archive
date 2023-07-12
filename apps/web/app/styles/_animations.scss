@@ -12,3 +12,12 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes border-spin {
+    0% {
+        --border-angle: 0deg;
+    }
+    100% {
+        --border-angle: 360deg;
+    }
+}

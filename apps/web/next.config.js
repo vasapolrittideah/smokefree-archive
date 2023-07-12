@@ -14,8 +14,8 @@ const nextConfig = {
         svgr: false,
     },
     sassOptions: {
-        includePaths: [join(__dirname, "styles")],
-        additionalData: `@import "styles/main.scss";`,
+        includePaths: [join(__dirname, "app", "styles")],
+        additionalData: `@import "app/styles/main.scss";`,
     },
 };
 

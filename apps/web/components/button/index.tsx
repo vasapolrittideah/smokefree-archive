@@ -24,7 +24,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
         icon,
         className,
         disabled = false,
-        loading= false,
+        loading = false,
         onClick,
         height,
         width,
