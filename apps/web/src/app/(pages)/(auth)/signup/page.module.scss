@@ -1,0 +1,45 @@
+.form {
+    display: flex;
+    align-items: center;
+    padding-top: 6rem;
+    height: 100vh;
+    flex-direction: column;
+    color: $color-rice-cake;
+
+    &__inner {
+        max-width: 26rem;
+        width: 100%;
+        display: grid;
+    }
+}
+
+.title {
+    font-size: $font-size-4xl;
+    line-height: $line-height-sm;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.button {
+    justify-content: center;
+
+    &__wrapper {
+        background: $color-rice-cake;
+    }
+}
+
+.signin {
+    margin-top: 1rem;
+    text-align: center;
+    color: rgba($color-rice-cake, 0.4);
+
+    &__link {
+        margin-left: .3rem;
+        text-decoration: none;
+        color: $color-rice-cake;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

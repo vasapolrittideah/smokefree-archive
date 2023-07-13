@@ -1,0 +1,43 @@
+.wrapper {
+    display: grid;
+}
+
+.input {
+    background-color: $color-woodsmoke;
+    border: 1px solid rgba($color-rice-cake, 0.2);
+    border-radius: 0.5rem;
+    color: $color-ash;
+    padding: 0 1rem;
+    transition: all 0.1s ease;
+    margin-top: 0.2rem;
+
+    &:focus {
+        border: 1px solid rgba($color-rice-cake, 1);
+        box-shadow: 0 0 0 4px rgba($color-rice-cake, 0.2);
+        transition: all 0.1s ease;
+    }
+
+    &__error {
+        border: 1px solid mix(white, $color-cinnabar, 10%);
+        box-shadow: 0 0 0 4px rgba(mix(white, $color-cinnabar, 10%), 0.2);
+        transition: all 0.1s ease;
+    }
+}
+
+.input[type="password"] {
+    &::placeholder {
+        color: rgba($color-rice-cake, 0.4);
+    }
+}
+
+.error {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: mix(white, $color-cinnabar, 10%);
+
+    &__message {
+        margin-top: 0.25rem;
+        margin-left: 0.5rem;
+    }
+}

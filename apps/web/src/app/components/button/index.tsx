@@ -9,7 +9,8 @@ type Props = React.DetailedHTMLProps<
 > & {
     children?: React.ReactNode;
     icon?: React.ReactNode;
-    className?: string;
+    wrapperClassName?: string;
+    buttonClassName?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     height?: string | number;
     width?: string | number;
@@ -22,7 +23,8 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
     {
         children,
         icon,
-        className,
+        wrapperClassName,
+        buttonClassName,
         disabled = false,
         loading = false,
         onClick,
@@ -36,13 +38,13 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
     ref
 ) {
     return (
-        <div className={styles.wrapper}>
+        <div className={classNames(wrapperClassName, styles.wrapper)} style={{ margin, padding }}>
             <button
                 ref={ref}
-                className={classNames(className, styles.button)}
+                className={classNames(buttonClassName, styles.button)}
                 disabled={disabled || loading}
                 onClick={onClick}
-                style={{ height, width, margin, padding, ...style }}
+                style={{ height, width, ...style }}
                 {...props}
             >
                 {!loading && (children ? children : <span>{icon}</span>)}
