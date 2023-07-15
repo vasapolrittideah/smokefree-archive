@@ -16,6 +16,12 @@
         border: 1px solid rgba(theme-get("border"), 0.2);
     }
 
+    &::placeholder {
+        @include theme() {
+            color: rgba(theme-get("text"), 0.4);
+        }
+    }
+
     &:focus {
         transition: all 0.1s ease;
 
@@ -31,14 +37,6 @@
         border: 1px solid mix(white, $color-cinnabar, 10%);
         box-shadow: 0 0 0 4px rgba(mix(white, $color-cinnabar, 10%), 0.2);
         transition: all 0.1s ease;
-    }
-}
-
-.input[type="password"] {
-    &::placeholder {
-        @include theme() {
-            color: rgba(theme-get("text"), 0.4);
-        }
     }
 }
 

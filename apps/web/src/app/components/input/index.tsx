@@ -15,7 +15,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import PasswordMeter from "@/components/password-meter";
 
-type Props<TFieldValues extends FieldValues> = React.HTMLProps<HTMLInputElement> & {
+export type Props<TFieldValues extends FieldValues> = React.HTMLProps<HTMLInputElement> & {
+    className?: string;
     label?: string;
     width?: number | string;
     height?: number | string;
@@ -29,6 +30,7 @@ type Props<TFieldValues extends FieldValues> = React.HTMLProps<HTMLInputElement>
 
 function InputInner<TFieldValues extends FieldValues>(
     {
+        className,
         label,
         width,
         height,
@@ -47,7 +49,7 @@ function InputInner<TFieldValues extends FieldValues>(
     const hasError = !!(errors && errorMessages);
 
     return (
-        <div className={styles.wrapper} style={{ margin, padding }}>
+        <div className={classNames(className, styles.wrapper)} style={{ margin, padding }}>
             <label className={styles.label} htmlFor={name}>
                 {label}
             </label>
@@ -59,9 +61,6 @@ function InputInner<TFieldValues extends FieldValues>(
                 {...(register && register(name, rules))}
                 {...props}
             />
-            {name === "password" && props.type === "password" && (
-                <PasswordMeter password={props.value as string} />
-            )}
             {hasError && (
                 <ErrorMessage
                     errors={errors}

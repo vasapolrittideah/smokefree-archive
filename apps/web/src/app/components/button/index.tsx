@@ -15,6 +15,7 @@ type Props = React.DetailedHTMLProps<
     width?: string | number;
     padding?: string | number;
     margin?: string | number;
+    shadow?: boolean;
     loading?: boolean;
 };
 
@@ -30,6 +31,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
         width,
         padding,
         margin,
+        shadow= false,
         style,
         ...props
     },
@@ -38,7 +40,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
     return (
         <button
             ref={ref}
-            className={classNames(className, styles.button)}
+            className={classNames(className, { [styles.shadow]: shadow }, styles.button)}
             disabled={disabled || loading}
             onClick={onClick}
             style={{ height, width, margin, padding, ...style }}

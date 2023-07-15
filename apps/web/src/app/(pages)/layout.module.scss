@@ -28,7 +28,7 @@
     height: 1px;
 
     @include theme() {
-        background-color: rgba(theme-get("text"), 0.1);
+        background-color: rgba(theme-get("border"), 0.1);
     }
 }
 

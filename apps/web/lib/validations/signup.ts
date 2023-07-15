@@ -13,4 +13,4 @@ export const ValidationSchema = z
         message: "ยืนยันรหัสผ่านไม่ถูกต้อง",
     });
 
-export type ValidationSchemaType = z.infer<typeof ValidationSchema>;
+export type TValidationSchema = z.infer<typeof ValidationSchema>;

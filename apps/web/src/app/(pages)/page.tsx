@@ -7,25 +7,15 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-import React, { useEffect } from "react";
-import { animate, motion, useMotionValue, useTransform } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import styles from "./page.module.scss";
-import { faArrowRightLong, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@/components/button";
 import QuitSmoking from "@/public/images/quit-smoking.svg";
 import Image from "next/image";
+import Count from "@/components/count";
 
 export default function Home() {
-    const count = useMotionValue(0);
-    const rounded = useTransform(count, Math.round);
-
-    useEffect(() => {
-        const animation = animate(count, 56, { duration: 2.5 });
-
-        return animation.stop;
-    }, []);
-
     return (
         <main className={styles.main}>
             <div className={styles.bg} />
@@ -74,11 +64,12 @@ export default function Home() {
                     transition={{ ease: "easeIn", duration: 0.5, delay: 0.2 }}
                 />
                 <div className={styles.start}>
-                    <Button width="18rem" height="3rem" loading={false}>
+                    <Button width="18rem" height="3rem" shadow={true} loading={false}>
                         <span>เริ่มต้น</span>
                     </Button>
                     <p>
-                        <motion.span>{rounded}</motion.span>&nbsp;ผู้เข้าร่วมโครงการ
+                        <Count initial={0} final={56} duration={2.5} />
+                        &nbsp;ผู้เข้าร่วมโครงการ
                     </p>
                 </div>
                 <motion.div

@@ -2,17 +2,17 @@
 
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
-import type { TValidationSchema } from "@/lib/validations/signup";
-import { ValidationSchema } from "@/lib/validations/signup";
-import { action } from "@/lib/actions/signup";
+import type { TValidationSchema } from "@/lib/validations/signin";
+import { ValidationSchema } from "@/lib/validations/signin";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { action } from "@/lib/actions/signin";
 import styles from "./page.module.scss";
-import { Input } from "@/components/input";
+import {Input} from "@/components/input";
 import Button from "@/components/button";
-import Link from "next/link";
-import {Password} from "@/components/password";
+import Image from "next/image";
+import GoogleIcon from "@/public/images/google.svg";
 
-export default function SignUp() {
+export default function SignIn() {
     const [isPending, startTransition] = useTransition();
     const {
         register,
@@ -32,13 +32,20 @@ export default function SignUp() {
     const watchPassword = watch("password", "");
 
     return (
-        <form className={styles.form} onSubmit={onSubmit}>
+        <form className={styles.form}>
             <div className={styles.wrapper}>
                 <h1 className={styles.title}>
-                    สร้างบัญชีเพื่อ
-                    <br />
-                    เข้าร่วมโครงการ
+                    เข้าสู่ระบบ
                 </h1>
+                <Button className={styles.google} height="3rem">
+                    <Image src={GoogleIcon} alt="Google" width={26} height={26} />
+                    <span>
+                        ดำเนินการต่อด้วย Google
+                    </span>
+                </Button>
+                <div className={styles.break}>
+                    <span>หรือ</span>
+                </div>
                 <Input<TValidationSchema>
                     label="อีเมล"
                     placeholder="กรอกอีเมล"
@@ -47,29 +54,19 @@ export default function SignUp() {
                     errors={errors}
                     width="100%"
                     height="3rem"
-                    margin="0 0 .5rem 0"
+                    margin=".5rem 0"
                 />
-                <Password<TValidationSchema>
+                <Input<TValidationSchema>
                     label="รหัสผ่าน"
                     placeholder="กรอกรหัสผ่าน"
                     name="password"
                     register={register}
                     errors={errors}
-                    indicator={true}
+                    type="password"
                     width="100%"
                     height="3rem"
                     margin="0 0 .5rem 0"
                     value={watchPassword}
-                />
-                <Password<TValidationSchema>
-                    label="ยืนยันรหัสผ่าน"
-                    placeholder="กรอกยืนยันรหัสผ่าน"
-                    name="passwordConfirm"
-                    register={register}
-                    errors={errors}
-                    width="100%"
-                    height="3rem"
-                    margin="0 0 .5rem 0"
                 />
                 <Button
                     className={styles.button}
@@ -82,12 +79,6 @@ export default function SignUp() {
                 >
                     ยืนยัน
                 </Button>
-                <div className={styles.signin}>
-                    <span>คุณมีบัญชีแล้วใช่หรือไม่</span>
-                    <Link className={styles.link} href="/">
-                        เข้าสู่ระบบ
-                    </Link>
-                </div>
             </div>
         </form>
     );

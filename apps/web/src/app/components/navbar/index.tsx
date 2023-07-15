@@ -36,7 +36,7 @@ export default function Navbar() {
                 <div className={styles.wrapper}>
                     <ul>
                         <li>
-                            <Link href="/">
+                            <Link href="/#top">
                                 {resolvedTheme === "dark" ? (
                                     <Image src={icon} alt="Icon" width={36} height={36} />
                                 ) : (
@@ -45,22 +45,17 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <Link className={styles.link} href="/">
-                                หน้าหลัก
-                            </Link>
-                        </li>
-                        <li>
                             <Link className={styles.link} href="/#about">
                                 เกี่ยวกับ
                             </Link>
                         </li>
                         <li>
-                            <Link className={styles.link} href="/signin">
+                            <Link className={styles.link} href="/signin#top">
                                 เข้าสู่ระบบ
                             </Link>
                         </li>
                         <li>
-                            <Link className={styles.link} href="/signup">
+                            <Link className={styles.link} href="/signup#top">
                                 <Button className={styles.button} height="2.2rem" width="100%">
                                     สมัครบัญชี
                                 </Button>

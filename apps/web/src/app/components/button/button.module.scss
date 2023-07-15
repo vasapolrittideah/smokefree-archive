@@ -14,12 +14,17 @@
 
         color: $color-bg;
         background-color: $color-text;
-        box-shadow: 0 4px 20px 0 rgba(mix(black, $color-text, 50%), 0.3);
         border: 1px solid rgba($color-bg, 0.2);
 
         &:hover {
             background-color: mix($color-bg, $color-text, 10%);
         }
+    }
+}
+
+.shadow {
+    @include theme() {
+        box-shadow: 0 4px 20px 0 rgba(mix(black, theme-get("bg"), 50%), 0.3);
     }
 }
 
