@@ -1,0 +1,84 @@
+@import "@/styles/themes";
+
+.nav {
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    z-index: 100;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: calc(28rem * 2);
+    height: 4rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+
+    ul {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+
+        li:first-child {
+            flex-grow: 2;
+        }
+
+        li:not(:last-child) {
+            margin-right: 1.25rem;
+        }
+
+        li:last-child {
+            margin-right: 1.25rem;
+        }
+
+        img {
+            margin-top: .5rem;
+        }
+
+        .link {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.line {
+    width: 100vw;
+    height: 1px;
+
+    transition: all 0.2s linear;
+
+    @include theme() {
+        background-color: rgba(theme-get("text"), 0.1);
+    }
+}
+
+.button {
+    body & {
+        box-shadow: 0 0 0 0 black;
+        padding: 0 1rem;
+        font-size: 14px;
+
+        @include theme() {
+            $color-text: theme-get("text");
+            $color-bg: theme-get("bg");
+
+            color: inherit;
+            background-color: inherit;
+            border-color: rgba(theme-get("border"), 0.5);
+
+            &:hover {
+                color: $color-text;
+                background-color: mix($color-text, $color-bg, 10%);
+            }
+        }
+    }
+}

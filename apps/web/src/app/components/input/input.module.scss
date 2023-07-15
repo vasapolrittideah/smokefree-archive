@@ -1,20 +1,30 @@
+@import "@/styles/themes";
+
 .wrapper {
     display: grid;
 }
 
 .input {
-    background-color: $color-woodsmoke;
-    border: 1px solid rgba($color-rice-cake, 0.2);
+    background-color: inherit;
     border-radius: 0.5rem;
-    color: $color-ash;
+    color: inherit;
     padding: 0 1rem;
     transition: all 0.1s ease;
     margin-top: 0.2rem;
 
+    @include theme() {
+        border: 1px solid rgba(theme-get("border"), 0.2);
+    }
+
     &:focus {
-        border: 1px solid rgba($color-rice-cake, 1);
-        box-shadow: 0 0 0 4px rgba($color-rice-cake, 0.2);
         transition: all 0.1s ease;
+
+        @include theme() {
+            $color-border: theme-get("border");
+
+            border: 1px solid rgba($color-border, 1);
+            box-shadow: 0 0 0 4px rgba($color-border, 0.2);
+        }
     }
 
     &__error {
@@ -26,7 +36,9 @@
 
 .input[type="password"] {
     &::placeholder {
-        color: rgba($color-rice-cake, 0.4);
+        @include theme() {
+            color: rgba(theme-get("text"), 0.4);
+        }
     }
 }
 
@@ -36,7 +48,7 @@
     align-items: center;
     color: mix(white, $color-cinnabar, 10%);
 
-    &__message {
+    span {
         margin-top: 0.25rem;
         margin-left: 0.5rem;
     }

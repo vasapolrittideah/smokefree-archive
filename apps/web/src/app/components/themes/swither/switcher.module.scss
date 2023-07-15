@@ -1,0 +1,28 @@
+@import "@/styles/themes";
+
+.switcher {
+    height: fit-content;
+    padding: 4px;
+    border-radius: 999rem;
+
+    @include theme() {
+        border: 1px solid rgba(theme-get("border"), 0.2);
+    }
+
+    button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: 1.8rem;
+        height: 1.8rem;
+        margin: 0;
+    }
+}
+
+.active {
+    border-radius: 2rem;
+
+    @include theme() {
+        background-color: rgba(mix(theme-get("text"), theme-get("bg"), 20%), 0.5);
+    }
+}

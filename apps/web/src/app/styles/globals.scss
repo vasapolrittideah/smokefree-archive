@@ -1,3 +1,5 @@
+@import "@/styles/themes";
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -142,7 +144,15 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: $color-woodsmoke;
+}
+
+html,
+body {
+    @include theme() {
+        color: theme-get("text");
+        border-color: theme-get("border");
+        background-color: theme-get("bg");
+    }
 }
 
 button::-moz-focus-inner,

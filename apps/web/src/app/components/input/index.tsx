@@ -59,7 +59,9 @@ function InputInner<TFieldValues extends FieldValues>(
                 {...(register && register(name, rules))}
                 {...props}
             />
-            {name === "password" && props.type === "password" && <PasswordMeter password={props.value as string} />}
+            {name === "password" && props.type === "password" && (
+                <PasswordMeter password={props.value as string} />
+            )}
             {hasError && (
                 <ErrorMessage
                     errors={errors}
@@ -67,7 +69,7 @@ function InputInner<TFieldValues extends FieldValues>(
                     render={({ message }) => (
                         <div className={styles.error}>
                             <FontAwesomeIcon icon={faExclamationCircle} />
-                            <span className={styles.error__message}>{message}</span>
+                            <span>{message}</span>
                         </div>
                     )}
                 />

@@ -1,37 +1,26 @@
+@import "@/styles/themes";
+
 .button {
-    background-image: radial-gradient(
-        200% 200% at 50% 111%,
-        rgba($color-rice-cake, 0.1) 0%,
-        rgba(120, 120, 120, 0.05) 24%
-    );
-    background-color: $color-woodsmoke;
     border-radius: 0.5rem;
-    border-width: 0;
-    color: inherit;
     cursor: pointer;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 0 2rem;
 
-    &:hover {
-        background-color: mix(white, $color-woodsmoke, 10%);
-    }
-}
+    @include theme() {
+        $color-bg: theme-get("text");
+        $color-text: theme-get("bg");
 
-.wrapper {
-    position: relative;
-    padding: 1px;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.4);
-    background: conic-gradient(
-        from var(--border-angle),
-        rgba($color-rice-cake, 0.5),
-        rgba($color-rice-cake, 0.1) 50%,
-        rgba($color-rice-cake, 0.1) 50%,
-        rgba($color-rice-cake, 0.5)
-    );
-    animation: border-spin 3s linear infinite;
+        color: $color-bg;
+        background-color: $color-text;
+        box-shadow: 0 4px 20px 0 rgba(mix(black, $color-text, 50%), 0.3);
+        border: 1px solid rgba($color-bg, 0.2);
+
+        &:hover {
+            background-color: mix($color-bg, $color-text, 10%);
+        }
+    }
 }
 
 .loading {

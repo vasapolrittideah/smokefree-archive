@@ -1,0 +1,30 @@
+$themes: (
+    light: (
+        "text": $color-shark,
+        "text-lighter": $color-trout,
+        "text-shadow": $color-silver,
+        "border": $color-shark,
+        "bg": $color-rice-cake,
+    ),
+    dark: (
+        "text": $color-rice-cake,
+        "text-lighter": $color-ash,
+        "text-shadow": $color-woodsmoke,
+        "border": $color-rice-cake,
+        "bg": $color-shark,
+    ),
+);
+
+@mixin theme() {
+    @each $theme, $map in $themes {
+        $theme-map: $map !global;
+        :global(.#{$theme}) & {
+            @content;
+        }
+    }
+    $theme-map: null !global;
+}
+
+@function theme-get($key) {
+    @return map-get($theme-map, $key);
+}

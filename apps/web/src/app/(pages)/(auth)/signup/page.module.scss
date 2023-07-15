@@ -1,16 +1,18 @@
+@import "@/styles/themes";
+
 .form {
     display: flex;
     align-items: center;
-    padding-top: 6rem;
+    padding-top: 3rem;
     height: 100vh;
     flex-direction: column;
-    color: $color-rice-cake;
+    color: inherit;
+}
 
-    &__inner {
-        max-width: 26rem;
-        width: 100%;
-        display: grid;
-    }
+.wrapper {
+    max-width: 26rem;
+    width: 100%;
+    display: grid;
 }
 
 .title {
@@ -22,10 +24,6 @@
 
 .button {
     justify-content: center;
-
-    &__wrapper {
-        background: $color-rice-cake;
-    }
 }
 
 .signin {
@@ -33,13 +31,20 @@
     text-align: center;
     color: rgba($color-rice-cake, 0.4);
 
-    &__link {
-        margin-left: .3rem;
-        text-decoration: none;
-        color: $color-rice-cake;
+    @include theme() {
+        color: rgba(theme-get("text"), 0.4);
+    }
+}
 
-        &:hover {
-            text-decoration: underline;
-        }
+.link {
+    margin-left: 0.3rem;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @include theme() {
+        color: theme-get("text");
     }
 }

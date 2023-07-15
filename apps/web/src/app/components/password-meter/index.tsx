@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 type Props = {
     password: string;
-}
+};
 
 export default function PasswordMeter({ password }: Props) {
     const score = zxcvbn(password).score;
@@ -31,9 +31,7 @@ export default function PasswordMeter({ password }: Props) {
             <div className={styles.indicator}>
                 <div className={styles[`_${score}`]} />
             </div>
-            <p className={styles[`_${score}__message`]}>
-                {changePasswordLabel()}
-            </p>
+            <p className={styles[`_${score}__message`]}>{changePasswordLabel()}</p>
         </div>
     );
 }

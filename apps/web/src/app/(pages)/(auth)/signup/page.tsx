@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition, FormEvent } from "react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import type { ValidationSchemaType } from "@/lib/validations/signup";
 import { ValidationSchema } from "@/lib/validations/signup";
@@ -32,7 +32,7 @@ export default function SignUp() {
 
     return (
         <form className={styles.form} onSubmit={onSubmit}>
-            <div className={styles.form__inner}>
+            <div className={styles.wrapper}>
                 <h1 className={styles.title}>
                     สร้างบัญชีเพื่อ
                     <br />
@@ -72,8 +72,7 @@ export default function SignUp() {
                     margin="0 0 .5rem 0"
                 />
                 <Button
-                    buttonClassName={styles.button}
-                    wrapperClassName={styles.button__wrapper}
+                    className={styles.button}
                     type="submit"
                     disabled={isPending}
                     width="100%"
@@ -83,10 +82,8 @@ export default function SignUp() {
                     ยืนยัน
                 </Button>
                 <div className={styles.signin}>
-                    <span>
-                        คุณมีบัญชีแล้วใช่หรือไม่
-                    </span>
-                    <Link className={styles.signin__link} href="/">
+                    <span>คุณมีบัญชีแล้วใช่หรือไม่</span>
+                    <Link className={styles.link} href="/">
                         เข้าสู่ระบบ
                     </Link>
                 </div>
