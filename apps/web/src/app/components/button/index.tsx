@@ -31,7 +31,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function (
         width,
         padding,
         margin,
-        shadow= false,
+        shadow = false,
         style,
         ...props
     },

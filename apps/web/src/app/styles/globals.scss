@@ -161,6 +161,13 @@ input::-moz-focus-inner {
     padding: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 @property --border-angle {
     syntax: "<angle>";
     inherits: true;

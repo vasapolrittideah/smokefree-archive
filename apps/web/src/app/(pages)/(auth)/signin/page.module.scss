@@ -15,7 +15,6 @@
     display: grid;
 }
 
-
 .title {
     font-size: $font-size-4xl;
     line-height: $line-height-sm;
@@ -26,7 +25,7 @@
 .google {
     background-color: $color-rice-cake !important;
     color: $color-shark !important;
-    transition: all .1s linear;
+    transition: all 0.1s linear;
 
     &:hover {
         transform: translateY(-5px);
@@ -35,30 +34,34 @@
     @include theme() {
         border-color: theme-get("border");
     }
+
+    img {
+        margin-right: .5rem;
+    }
 }
 
 .break {
     position: relative;
-    margin: 2rem 0 .5rem 0;
+    margin: 2rem 0 0.5rem 0;
     height: 1px;
     width: 100%;
 
     span {
         position: absolute;
         width: fit-content;
-        top: -.85rem;
+        top: -0.85rem;
         right: 0;
         left: 0;
         margin: 0 auto;
-        padding: 0 .5rem;
+        padding: 0 0.5rem;
 
         @include theme() {
-            color: rgb(theme-get("text"), .5);
+            color: rgb(theme-get("text"), 0.5);
             background-color: theme-get("bg");
         }
     }
 
     @include theme() {
-        background-color: rgb(theme-get("border"), .3);
+        background-color: rgb(theme-get("border"), 0.3);
     }
 }

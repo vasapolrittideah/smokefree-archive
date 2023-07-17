@@ -1,12 +1,12 @@
-import {Input, Props as InputProps} from "../input";
-import {FieldValues} from "react-hook-form";
+import { Input, Props as InputProps } from "../input";
+import { FieldValues } from "react-hook-form";
 import React from "react";
 import PasswordMeter from "@/components/password-meter";
 import styles from "./password.module.scss";
 
 type Props<TFieldValues extends FieldValues> = Omit<InputProps<TFieldValues>, "ref"> & {
     indicator?: boolean;
-}
+};
 
 function PasswordInner<TFieldValues extends FieldValues>(
     {
@@ -34,7 +34,9 @@ function PasswordInner<TFieldValues extends FieldValues>(
                 type="password"
                 {...props}
             />
-            {indicator && <PasswordMeter className={styles.indicator} password={props.value as string} />}
+            {indicator && (
+                <PasswordMeter className={styles.indicator} password={props.value as string} />
+            )}
         </>
     );
 }

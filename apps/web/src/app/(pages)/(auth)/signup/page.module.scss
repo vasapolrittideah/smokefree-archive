@@ -48,3 +48,11 @@
         color: theme-get("text");
     }
 }
+
+.error {
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    color: mix(white, $color-cinnabar, 10%);
+    background-color: rgba(mix(white, $color-cinnabar, 20%), 0.2);
+}

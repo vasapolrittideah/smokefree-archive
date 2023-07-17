@@ -1,18 +1,20 @@
 "use client";
 
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import type { TValidationSchema } from "@/lib/validations/signup";
 import { ValidationSchema } from "@/lib/validations/signup";
-import { action } from "@/lib/actions/signup";
+import { signUp } from "@/lib/actions/signup";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from "./page.module.scss";
 import { Input } from "@/components/input";
 import Button from "@/components/button";
 import Link from "next/link";
-import {Password} from "@/components/password";
+import { Password } from "@/components/password";
+import {signIn} from "next-auth/react";
 
 export default function SignUp() {
+    const [errorMessage, setErrorMessage] = useState("");
     const [isPending, startTransition] = useTransition();
     const {
         register,
@@ -24,12 +26,27 @@ export default function SignUp() {
     });
 
     const onSubmit = handleSubmit((data) => {
-        startTransition(() => {
-            void action(data);
+        startTransition(async () => {
+            const res = await signUp(data);
+
+            if (res.status != 201) {
+                if (res.status === 500 && res.message === "email does already exist") {
+                    setErrorMessage(
+                        "ที่อยู่อีเมลมีอยู่ในระบบแล้ว กรุณาตรวจสอบความถูกต้องอีเมลของคุณและยืนยันใหม่อีกครั้ง"
+                    );
+                    return;
+                }
+
+                setErrorMessage(res.message);
+                return;
+            }
+
+            void signIn();
         });
     });
 
     const watchPassword = watch("password", "");
+    watch(() => setErrorMessage(""));
 
     return (
         <form className={styles.form} onSubmit={onSubmit}>
@@ -39,6 +56,7 @@ export default function SignUp() {
                     <br />
                     เข้าร่วมโครงการ
                 </h1>
+                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
                 <Input<TValidationSchema>
                     label="อีเมล"
                     placeholder="กรอกอีเมล"
@@ -75,6 +93,7 @@ export default function SignUp() {
                     className={styles.button}
                     type="submit"
                     disabled={isPending}
+                    loading={isPending}
                     shadow={true}
                     width="100%"
                     height="3rem"

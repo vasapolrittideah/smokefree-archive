@@ -1,6 +1,6 @@
 "use client";
 
-import ThemeSwitcher from "@/components/themes/swither";
+import ThemeSwitcher from "@/components/themes/switcher";
 import styles from "./navbar.module.scss";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
@@ -10,6 +10,7 @@ import Image from "next/image";
 import icon from "@/public/images/icon.png";
 import iconDark from "@/public/images/icon-dark.png";
 import { useTheme } from "next-themes";
+import {signIn} from "next-auth/react";
 
 export default function Navbar() {
     const { resolvedTheme } = useTheme();
@@ -50,9 +51,9 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <Link className={styles.link} href="/signin#top">
+                            <p className={styles.link} onClick={() => signIn()}>
                                 เข้าสู่ระบบ
-                            </Link>
+                            </p>
                         </li>
                         <li>
                             <Link className={styles.link} href="/signup#top">
